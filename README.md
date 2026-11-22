@@ -1,39 +1,123 @@
-<!--
-This README describes the package. If you publish this package to pub.dev,
-this README's contents appear on the landing page for your package.
+# Egyptian Utils
 
-For information about how to write a good package README, see the guide for
-[writing package pages](https://dart.dev/tools/pub/writing-package-pages).
-
-For general information about developing packages, see the Dart guide for
-[creating packages](https://dart.dev/tools/pub/create-packages)
-and the Flutter guide for
-[developing packages and plugins](https://flutter.dev/to/develop-packages).
--->
-
-TODO: Put a short description of the package here that helps potential users
-know whether this package might be useful for them.
+A lightweight and practical Dart utility package providing helpful extensions for Egyptian developers and applications targeting Egyptian users.
 
 ## Features
 
-TODO: List what your package can do. Maybe include images, gifs, or videos.
+- **Arabic Numerals Conversion**: Easily convert Western digits (`0-9`) into Eastern Arabic numerals (`٠-٩`) in any string.
+- **Egyptian Mobile Phone Validation & Formatting**:
+  - Validate mobile numbers for all major Egyptian carriers (Vodafone `010`, Etisalat `011`, Orange `012`, WE `015`).
+  - Supports local and international formats (`+20`, `0020`, `20`).
+  - Format phone numbers cleanly into readable formats (e.g. `010 123 45678`).
+- **Currency Formatting**: Format numbers into localized currency representations with custom symbols, locales, and currency codes (defaults to Egyptian Pounds `EGP`).
 
-## Getting started
+---
 
-TODO: List prerequisites and provide or point to information on how to
-start using the package.
+## Getting Started
+
+Add `egyptian_utils` to your `pubspec.yaml` dependencies:
+
+```bash
+dart pub add egyptian_utils
+```
+
+Or for Flutter projects:
+
+```bash
+flutter pub add egyptian_utils
+```
+
+Then import the package in your Dart code:
+
+```dart
+import 'package:egyptian_utils/egyptian_utils.dart';
+```
+
+---
 
 ## Usage
 
-TODO: Include short and useful examples for package users. Add longer examples
-to `/example` folder.
+### 1. Convert Digits to Arabic Numerals
+
+Use the `.toArabicNumbers()` extension on any `String`:
 
 ```dart
-const like = 'sample';
+import 'package:egyptian_utils/egyptian_utils.dart';
+
+void main() {
+  String message = "Order #150 placed on 22/11/2026";
+  print(message.toArabicNumbers());
+  // Output: Order #١٥٠ placed on ٢٢/١١/٢٠٢٦
+}
 ```
 
-## Additional information
+---
 
-TODO: Tell users more about the package: where to find more information, how to
-contribute to the package, how to file issues, what response they can expect
-from the package authors, and more.
+### 2. Egyptian Phone Validation & Formatting
+
+Easily validate and format Egyptian phone numbers:
+
+```dart
+import 'package:egyptian_utils/egyptian_utils.dart';
+
+void main() {
+  String phone = "+201012345678";
+
+  // Check validity
+  if (phone.isValidEgyptianPhone()) {
+    print("Valid Egyptian phone number!");
+  }
+
+  // Convenient getter
+  print(phone.isEgyptianPhone); // true
+
+  // Format into a readable style: 01X XXX XXXXX
+  print(phone.formatEgyptianPhone());
+  // Output: 010 123 45678
+}
+```
+
+**Supported prefixes**:
+- Vodafone: `010`
+- Etisalat: `011`
+- Orange: `012`
+- WE: `015`
+- International codes: `+20`, `0020`, `20`
+
+---
+
+### 3. Currency Formatting
+
+Format numbers as localized currency strings:
+
+```dart
+import 'package:egyptian_utils/egyptian_utils.dart';
+
+void main() {
+  num price = 1500;
+
+  // Default: Egyptian Pounds (ar_EG, EGP)
+  print(price.toCurrency());
+  // Output: ١٬٥٠٠٫٠٠ EGP
+
+  // Format in US Dollars
+  print(price.toCurrency(currencyCode: 'USD', locale: 'en_US'));
+  // Output: USD1,500.00
+}
+```
+
+---
+
+## Running Tests
+
+To run the automated tests:
+
+```bash
+dart test
+```
+
+---
+
+## License
+
+This project is licensed under the MIT License - see the LICENSE file for details.

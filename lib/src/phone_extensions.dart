@@ -9,7 +9,7 @@ extension EgyptianPhoneExtensions on String {
   );
 
   /// Checks whether this string is a valid Egyptian mobile phone number.
-  bool isValidEgyptianPhone() => _egyptianPhoneRegex.hasMatch(this.trim());
+  bool isValidEgyptianPhone() => _egyptianPhoneRegex.hasMatch(trim());
 
   /// Convenient getter alias for [isValidEgyptianPhone].
   bool get isEgyptianPhone => isValidEgyptianPhone();
@@ -19,7 +19,7 @@ extension EgyptianPhoneExtensions on String {
   /// If the string is not a valid Egyptian phone number, the original string
   /// is returned without modification.
   String formatEgyptianPhone() {
-    final match = _egyptianPhoneRegex.firstMatch(this.trim());
+    final match = _egyptianPhoneRegex.firstMatch(trim());
     if (match == null) return this;
     final number = match.group(1)!; // e.g. 1012345678
     return '0${number.substring(0, 2)} ${number.substring(2, 5)} ${number.substring(5)}';

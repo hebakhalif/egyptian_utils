@@ -1,7 +1,8 @@
 name: egyptian_utils
-description: A starting point for Dart libraries or applications.
+description: A Dart utility package with extensions for Arabic numerals conversion, Egyptian mobile phone validation and formatting, and multi-locale currency formatting.
 version: 1.0.0
-# repository: https://github.com/my_org/my_repo
+repository: https://github.com/hebakhalif/egyptian_utils
+homepage: https://github.com/hebakhalif/egyptian_utils
 
 environment:
   sdk: ^3.13.5

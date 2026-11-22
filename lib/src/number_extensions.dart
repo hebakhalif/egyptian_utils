@@ -10,7 +10,7 @@ extension ArabicNumbers on String {
     final buffer = StringBuffer();
 
     // Iterate through characters safely using the characters package
-    for (var ch in this.characters) {
+    for (var ch in characters) {
       final digit = int.tryParse(ch);
       if (digit != null) {
         // Replace digit with its Arabic counterpart
